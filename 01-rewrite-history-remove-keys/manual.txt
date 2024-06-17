@@ -1,0 +1,45 @@
+Required: 
+- access to empty repo with initial commit and 
+- access to azure storage
+
+Git config user.name TESTUSER
+Git config user.email TESTUSER.Kraik@gmail.com
+Generate a PAT
+Create a storage account & copy the key
+
+----------------------------
+Git clone ….
+
+Add a demo.py file to the project , add & commit:
+Git add --all
+Git commit –m  “adding file”
+
+Add to the file a secret:
+Git add --all
+Git commit –m  “adding secret”
+
+Add to a demo.py also name 
+Git add --all
+Git commit –m  “adding secret”
+
+Push  fail
+
+Remove the secret Git add  & commit
+Git add --all
+Git commit –m  “adding secret”
+Push  fail
+
+We have error because the secret is still in commit history
+git log –oneline
+
+Lets squash the recent 3 commits (remove of secret + add name + add secret)
+git rebase -i HEAD~3
+
+In editor
+ pick …. Add secret
+ squash …. Add name
+ squash …  Remove secret
+Save & Close
+
+Define a new commit message
+Push ok
