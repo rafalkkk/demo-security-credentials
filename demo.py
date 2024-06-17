@@ -1,2 +1,2 @@
-storageaccount_name='my-storage-account'
-access_key='REMOVED'
+storageaccount_name=''
+access_key=''
