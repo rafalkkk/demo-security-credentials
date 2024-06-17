@@ -20,7 +20,7 @@ jobs:
     - name: Create a container in Azure
       run: |
         TIME=$(date "+%H%M%S")
-        az storage container create --name $TIME --account-name $ACCNAME --account-key $KEY1 --auth-mode key
+        az storage container create --name "key-$TIME" --account-name $SA_NAME --account-key $SA_KEY1 --auth-mode key
         
 #    - name: Create a container in Azure without the KEY
 #      run: |
