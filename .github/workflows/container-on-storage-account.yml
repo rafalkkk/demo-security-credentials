@@ -29,7 +29,7 @@ jobs:
         # TIME=$(date "+%H%M%S")
         # if runner is windows/powershell
         $TIME=get-date -Format yyyyMMddhhmmss
-        az storage container create --name "no-key-$TIME" --account-name $ACCNAME --auth-mode login
+        az storage container create --name "no-key-$TIME" --account-name $SA_NAME --auth-mode login
 
 
 
