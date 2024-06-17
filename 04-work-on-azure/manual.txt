@@ -1,0 +1,74 @@
+This demo shows that:
+- a workflow can read secret and run a command on Azure (creation of a container on storage account)
+- if a machine has assigned managed identity, and is configured as runner, it can create the container without knowing password
+
+
+=====script 1 - configure storage account ===========================
+
+DATE=$(date "+%Y%m%d%H%M%S")
+RG="demo-$DATE"
+az group create --name $RG --location northeurope
+ACCNAME="demo$DATE"
+az storage account create --name $ACCNAME --resource-group $RG --sku Standard_LRS --location northeurope
+KEY1=$(az storage account keys list --resource-group $RG --account-name $ACCNAME --query [0].value -o tsv)
+
+echo "--------------------------------"
+echo "RG:      $RG"
+echo "ACCNAME: $ACCNAME"
+echo "KEY1:    $KEY1"
+echo "--------------------------------"
+
+======================================================================
+
+
+==== OPTIONAL - script 2 - show that we can create a storage account manually ============
+TIME=$(date "+%H%M%S")
+az storage container create --name $TIME --account-name $ACCNAME --account-key $KEY1 --auth-mode key
+======================================================================
+
+
+======= Create a container using KEY saved in repo's secrets ===================================
+MANUAL TASKS:
+- add secrets to repo   SA_NAME  SA_KEY1
+- in the repos workflow file add commands to get the secrets or use file: container-on-storage-account.yml
+- add step creating the new container (folder) on the storage account - uncoment the first part and definition on variables
+- run and show that the new container was created using the secret key
+
+
+====== Container creation without key: ========================================
+MANUAL TAKSKS:
+- Create or use an existing VM as a runner
+- Set identity for the VM
+- Install azcli
+- Add this computer as a runner on github (menu actions)
+- run the runner process - 
+- run the workflow - it should fail due to missing permissions!
+- add assigment on the level of the RG for the VM to the role "Storage Blob Data Contributor"
+- run the workflow again - this time it should succeed
+
+
+==================Should this be a new Ubuntu VM, you can use the script below===============
+
+VMNAME="vm-demo-runner-01"
+read -s PASS
+az vm create --resource-group $RG --name $VMNAME --image Ubuntu2204 --size Standard_B2s --admin-username boss --admin-password $PASS
+# configure managed identity
+az vm identity assign --resource-group $RG --name demovmrunner01
+# grant permissions
+SCOPE=$(az storage account show --name demo20240613080521 --query "id" --output=tsv)
+APPID=$(az vm show --resource-group $RG --name demovmrunner01 --query identity.principalId --output=tsv)
+az role assignment create --role "Storage Blob Data Contributor" --assignee $APPID --scope $SCOPE
+==================================================================================================
+MANUAL TASKS:
+- Install AZ CLI
+    curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+- Configure the machine as runner on github (menu actions)
+- Make sure the right part of the workflow is uncommented (environment // run-on // creation of container)
+- Run the workflow
+
+
+BACKUP:
+
+# COMMAND=$(echo -n "curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash" | base64)
+# az vm create --resource-group $RG --name $VMNAME --image Ubuntu2204 --size Standard_B2s --admin-username boss --admin-password $PASS --custom-data $COMMAND
+
