@@ -10,34 +10,23 @@ jobs:
   do_some_actions_on_azure:
     runs-on: ubuntu-latest
     # runs-on: self-hosted
+
     env:
       SA_NAME: ${{ secrets.SA_NAME }}
       SA_KEY1: ${{ secrets.SA_KEY1 }}
+      
     steps:
-    - name: Display secrets and log them (get from environment)
-      run: |
-        echo "This is the input variable with user password: $ENV_USER_PASSWORD"
-        echo "This is the secret from repository: $ENV_APP_SA_KEY"
-    - name: Compromise the secret from GitHub
-      run: |
-        echo $ENV_APP_SA_KEY > password_in_clear_text.txt
-        ls -l
-        cat password_in_clear_text.txt
 
-        new_string=""
-        for (( i=0; i<${#ENV_APP_SA_KEY}; i+=1 )); do
-          new_string+="${ENV_APP_SA_KEY:$i:1} "
-        done
-        echo "A compromised password is here: $new_string"
     - name: Create a container in Azure
       run: |
         TIME=$(date "+%H%M%S")
         az storage container create --name $TIME --account-name $ACCNAME --account-key $KEY1 --auth-mode key
-    - name: Create a container in Azure without the KEY
-      run: |
-        az login --identity
-        TIME=$(date "+%H%M%S")
-        az storage container create --name "no-key-$TIME" --account-name $ACCNAME --auth-mode login
+        
+#    - name: Create a container in Azure without the KEY
+#      run: |
+#        az login --identity
+#        TIME=$(date "+%H%M%S")
+#       az storage container create --name "no-key-$TIME" --account-name $ACCNAME --auth-mode login
 
 
 
