@@ -1,0 +1,55 @@
+In the repo define the secret named MY_TOP_SECRET
+Add to the .github/workflows a workflow file with name decrypt-secret.yml  with following content (or use decrypt-secret.yml):
+Show that it is possible to decrypt the password/secret
+
+name: Decrypt a secret
+
+on:
+  push:
+    branches:
+      - main
+      
+  workflow_dispatch:
+    inputs:
+      user_password:
+        description: 'Enter your password'
+        required: true
+        default: 'MyPa55word.'
+
+jobs:
+
+  do_reverse_engineering:
+    runs-on: ubuntu-latest
+    # runs-on: self-hosted
+    
+    env:
+      ENV_USER_PASSWORD: ${{ inputs.USER_PASSWORD != '' && inputs.USER_PASSWORD || 'ABC123.CBA321' }}
+      ENV_MY_TOP_SECRET: ${{ secrets.MY_TOP_SECRET }}
+    
+    steps:
+    
+    - name: Test secrets and logs - get from environment
+      run: |
+        echo "This is the input variable with user password: $ENV_USER_PASSWORD"
+        echo "This is my top secret: $ENV_MY_TOP_SECRET"
+        
+    - name: Compromise the secret from GitHub
+      run: |
+        echo "Saving secret in a file"
+        echo $ENV_MY_TOP_SECRET > password_in_clear_text.txt
+        echo "Copying a file to another file"
+        cp password_in_clear_text.txt a_new_file_with_password.txt
+        echo "Listing the files"
+        ls -l
+        echo "Displaying the file content"
+        cat a_new_file_with_password.txt
+        echo "Building a new variable"
+        new_string=""
+        for (( i=0; i<${#ENV_MY_TOP_SECRET}; i+=1 )); do
+          new_string+="${ENV_MY_TOP_SECRET:$i:1} "
+        done
+        echo "A decrypted password is here: $new_string"
+        
+        
+ Discuss how to get the secret value
+
