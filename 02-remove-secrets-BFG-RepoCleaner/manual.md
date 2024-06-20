@@ -14,7 +14,7 @@ site = 'TESTSITE'
 - PANIC! The secrets are also in the past commits! We need to remove them!
 - Clone the repo using –-mirror option (the project files are not present in the mirrored repo)
 ```
-git clone https://github.com/TESTUSERkkk/security-credentials-demo.git –mirror
+git clone https://github.com/rafalkkk/security-credentials-demo.git –mirror
 ```
 - Prepare password file containing strings that should be removed. Put there the userName and password
 ```

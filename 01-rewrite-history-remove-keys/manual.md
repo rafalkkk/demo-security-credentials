@@ -14,7 +14,7 @@ git config user.email ...
 ## Steps:
 ----------------------------
 ```bash
-git clone https://github.com/TESTUSERkkk/security-credentials-demo.git
+git clone https://github.com/rafalkkk/security-credentials-demo.git
 
 # Add a demo.py file to the project , add & commit (initial commit, if file was already commited this step can be skipped):
 Git add --all
