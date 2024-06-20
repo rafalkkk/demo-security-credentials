@@ -1,5 +1,6 @@
-storageaccount_name='demostorage334343'
+storageaccount_name='demo03202406204154'
 access_key='REMOVED'
+container = 'data'
 username = '***'
 userpass = '***'
 website = '***'
