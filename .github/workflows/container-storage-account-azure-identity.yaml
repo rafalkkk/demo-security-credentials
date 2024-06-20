@@ -1,0 +1,23 @@
+name: Create a container in storage account using IDENTITY
+
+on:
+  workflow_dispatch:
+
+jobs:
+  do_some_actions_on_azure:
+    runs-on: self-hosted
+
+    env:
+      SA_NAME: ${{ secrets.SA_NAME }}
+      # SA_KEY1: ${{ secrets.SA_KEY1 }}
+      
+    steps:
+    - name: Create a container in Azure without the KEY
+      run: |
+        # if runner is windows/powershell
+        az login --identity
+        $TIME=get-date -Format yyyyMMddhhmmss
+        az storage container create --name "no-key-$TIME" --account-name $ENV:SA_NAME --auth-mode login    
+        # if runner is Ubuntu:
+        # TIME=$(date "+%H%M%S")
+        # az storage container create --name "no-key-$TIME" --account-name $SA_NAME --auth-mode login
