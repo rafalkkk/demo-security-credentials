@@ -1,4 +1,4 @@
-name: Create a container in storage account using IDENTITY
+name: Container using IDENTITY
 
 on:
   workflow_dispatch:
