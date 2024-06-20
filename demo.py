@@ -1,6 +1,6 @@
 storageaccount_name='demo03202406204154'
 access_key='REMOVED'
 container = 'data'
-username = '***'
+username = 'TESTUSER'
 userpass = '***'
 website = '***'
