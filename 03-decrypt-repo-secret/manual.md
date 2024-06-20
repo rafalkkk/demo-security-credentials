@@ -1,7 +1,12 @@
-In the repo define the secret named MY_TOP_SECRET
-Add to the .github/workflows a workflow file with name decrypt-secret.yml  with following content (or use decrypt-secret.yml):
-Show that it is possible to decrypt the password/secret
+## Required
+- this repo and already defined here workflow files
+- storage account created on Azure
 
+## Steps
+- In the repo define the secret named **MY_TOP_SECRET**
+- Add to the .github/workflows a workflow file with name decrypt-secret.yml  with following content (or use the existing decrypt-secret.yml):
+
+```yaml
 name: Decrypt a secret
 
 on:
@@ -20,7 +25,6 @@ jobs:
 
   do_reverse_engineering:
     runs-on: ubuntu-latest
-    # runs-on: self-hosted
     
     env:
       ENV_USER_PASSWORD: ${{ inputs.USER_PASSWORD != '' && inputs.USER_PASSWORD || 'ABC123.CBA321' }}
@@ -37,19 +41,22 @@ jobs:
       run: |
         echo "Saving secret in a file"
         echo $ENV_MY_TOP_SECRET > password_in_clear_text.txt
+
         echo "Copying a file to another file"
         cp password_in_clear_text.txt a_new_file_with_password.txt
+
         echo "Listing the files"
         ls -l
+
         echo "Displaying the file content"
         cat a_new_file_with_password.txt
+
         echo "Building a new variable"
         new_string=""
         for (( i=0; i<${#ENV_MY_TOP_SECRET}; i+=1 )); do
           new_string+="${ENV_MY_TOP_SECRET:$i:1} "
         done
         echo "A decrypted password is here: $new_string"
+```        
         
-        
- Discuss how to get the secret value
-
+- Discuss how to get the secret value
