@@ -1,9 +1,6 @@
 name: Create a container in storage account
 
 on:
-  push:
-    branches:
-      - main
   workflow_dispatch:
 
 jobs:
