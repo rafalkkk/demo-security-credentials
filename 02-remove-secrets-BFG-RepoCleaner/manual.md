@@ -1,7 +1,7 @@
 ## Required
 - A repo on GitHub (can be this one)
 - VM with Java and BCG downloaded installed
-- (https://rtyley.github.io/bfg-repo-cleaner/)
+- https://rtyley.github.io/bfg-repo-cleaner/
 
 ## Steps
 - Create a few new commits and push them one by one. They should contain:
@@ -43,5 +43,5 @@ Git push
 - (Optional) show logs of BFG
 
 ## Links
-- (https://dev.to/toureholder/removing-sensitive-data-from-your-git-history-with-bfg-4ni4)
-- (https://til.simonwillison.net/git/rewrite-repo-remove-secrets)
+- https://dev.to/toureholder/removing-sensitive-data-from-your-git-history-with-bfg-4ni4
+- https://til.simonwillison.net/git/rewrite-repo-remove-secrets
