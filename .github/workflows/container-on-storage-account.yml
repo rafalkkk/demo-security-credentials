@@ -22,19 +22,9 @@ jobs:
     - name: Create a container in Azure without the KEY
       run: |
         az login --identity
-        
 #        # if runner is Ubuntu:
 #        # TIME=$(date "+%H%M%S")
 #        # az storage container create --name "no-key-$TIME" --account-name $SA_NAME --auth-mode login
-        
         # if runner is windows/powershell
         $TIME=get-date -Format yyyyMMddhhmmss
         az storage container create --name "no-key-$TIME" --account-name $ENV:SA_NAME --auth-mode login
-        
-
-
-
-
-      
-
-        
