@@ -37,7 +37,7 @@ git reflog expire --expire=now --all && git gc --prune=now –aggressive
 ```
 - Push the code
 ```
-Git push
+git push
 ```
 - Refresh the page on GitHub and show that the userName and password disappeared from the repo history
 - (Optional) show logs of BFG
