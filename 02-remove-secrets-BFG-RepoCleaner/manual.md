@@ -6,7 +6,7 @@
 ## Steps
 - Create a few new commits and push them one by one. They should contain:
 ```
-username = 'topsecretuser'
+username = 'rafal-user'
 password = 'ImEatingHawaiPizza'
 site = 'TESTSITE'
 ```
@@ -18,13 +18,13 @@ git clone https://github.com/rafalkkk/security-credentials-demo.git –mirror
 ```
 - Prepare password file containing strings that should be removed. Put there the userName and password
 ```
-topsecretuser==>TESTUSER
-ImEatingHawaiPizza==>TESTPASS
-TESTSITE==>TESTSITE
+rafal-user==>REMOVED
+ImEatingHawaiPizza==>REMOVED
+TESTSITE==>REMOVED
 ```
 - Run the command:
 ```
-java -jar C:\tmp\bfg-1.14.0.jar --replace-text c:\tmp\passwords.txt tmp-demo-01.git
+java -jar .\bfg-1.14.0.jar --replace-text .\passwords.txt security-credentials-demo.gitt
 ```
 - (Optional) To validate the change use commands like below:
 ```
