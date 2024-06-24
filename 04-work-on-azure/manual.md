@@ -65,7 +65,7 @@ jobs:
 ### Create a storage container using private runner
 - Create or use an existing VM as a runner - choose the OS carefully, the code depends on OS
     - Set identity for the VM
-    - Add assignment on the level of the RG for the VM to the role "Storage Blob Data Contributor"
+    - Add assignment on the level of the RG for the VM to the role "**Storage Blob Data Contributor**"
     - Install azcli
 - Add this computer as a runner on github (menu actions)
     - run the runner process - 
@@ -99,6 +99,6 @@ az role assignment create --role "Storage Blob Data Contributor" --assignee $APP
 
 #### Backup:
 
-# COMMAND=$(echo -n "curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash" | base64)
-# az vm create --resource-group $RG --name $VMNAME --image Ubuntu2204 --size Standard_B2s --admin-username boss --admin-password $PASS --custom-data $COMMAND
+COMMAND=$(echo -n "curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash" | base64)
+az vm create --resource-group $RG --name $VMNAME --image Ubuntu2204 --size Standard_B2s --admin-username boss --admin-password $PASS --custom-data $COMMAND
 
