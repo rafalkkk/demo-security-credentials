@@ -1,5 +1,5 @@
-storageaccount_name='demo03202406204154'
-access_key='REMOVED'
+storageaccount_name='demo03202406243984937'
+access_key='***'
 container = 'data'
 username = 'removed'
 userpass = 'removed'
