@@ -9,7 +9,7 @@
 ```
 username = 'rafal-user'
 password = 'Im_Eating_Hawaiian_Pizza'
-site = 'TESTSITE'
+site = 'localhost'
 ```
 - PANIC! **Correct entries in the current version, commit it and push. (BFG is not changing the HEAD**)
 - PANIC! The secrets are also in the past commits! We need to remove them!
@@ -21,7 +21,7 @@ git clone https://github.com/rafalkkk/security-credentials-demo.git –-mirror
 ```
 rafal-user==>REMOVED
 ImEatingHawaiPizza==>REMOVED
-TESTSITE==>REMOVED
+localhost==>REMOVED
 ```
 - Run the command:
 ```
