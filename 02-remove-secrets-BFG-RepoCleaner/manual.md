@@ -4,17 +4,18 @@
 - https://rtyley.github.io/bfg-repo-cleaner/
 
 ## Steps
-- Create a few new commits and push them one by one. They should contain:
+- Create a few new commits and push them one by one. They should contain
+  (avoid using exactly the same names, as they will be removed also from that file):
 ```
 username = 'rafal-user'
-password = 'ImEatingHawaiPizza'
+password = 'Im_Eating_Hawaiian_Pizza'
 site = 'TESTSITE'
 ```
-- PANIC! Correct entries in the current version, commit it and push. (**BFG is not changing the HEAD**)
+- PANIC! **Correct entries in the current version, commit it and push. (BFG is not changing the HEAD**)
 - PANIC! The secrets are also in the past commits! We need to remove them!
 - Clone the repo using –-mirror option (the project files are not present in the mirrored repo)
 ```
-git clone https://github.com/rafalkkk/security-credentials-demo.git –mirror
+git clone https://github.com/rafalkkk/security-credentials-demo.git –-mirror
 ```
 - Prepare password file containing strings that should be removed. Put there the userName and password
 ```
@@ -24,7 +25,7 @@ TESTSITE==>REMOVED
 ```
 - Run the command:
 ```
-java -jar .\bfg-1.14.0.jar --replace-text .\passwords.txt security-credentials-demo.gitt
+java -jar .\bfg-1.14.0.jar --replace-text .\passwords.txt security-credentials-demo.git
 ```
 - (Optional) To validate the change use commands like below:
 ```
