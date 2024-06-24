@@ -1,5 +1,5 @@
-storageaccount_name='demo03202406243984937'
-access_key='***'
+storageaccount_name='PANIC'
+access_key='PANIC'
 container = 'data'
 username = 'PANIC'
 userpass = 'PANIC'
